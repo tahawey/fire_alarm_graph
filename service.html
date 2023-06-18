@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Green Plaza Fire Alarm Graphics Systems</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div id="status">Connection Status: Not Connected</div>
+ <p id="messages"></p> <p id="lastmsg"></p>
+ 
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" ></script>
+ 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src = "tah.js"> </script>
+	<script src="js2.js"></script>
+	<script src="hh.js"></script> 
+ 
+	<button id="led123" class = "button Alarm" > </button >
+	<h1 style="color: white;text-align:center;"> <img src="sonac.png"></h1>
+<p id="demo" ></p>
+	<input id="div1" type="text" value=" ">
+
+	<script>
+ 
+	var counter=1;
+	let output=0;
+	temp1="0.0";temp2="0.0";
+	const myTimeout = setTimeout(fn1, 300);
+	let reg1=0;let reg2=0;let reg3=0;let reg4=0;let reg5=0;let reg6=0;let reg7=0;let reg8=0;let reg9=0;let reg10=0;
+	setTimeout(fn_service, 400);
+ 
+
+leds="";
+text3="";text3_old="";
+const m = [];
+data_m=""; last_time=Date.now() ;ref_time=60*1000;leds="";
+ function toggle(point) {   var element = document.getElementById("led"+point);   if (element.classList==("button on")) element.classList=("button off"); else element.classList=("button on");}
+
+
+
+function toggle_me(){
+if(document.getElementById('led123').className == "button off")document.getElementById('led123').className = "button on";else document.getElementById('led123').className = "button off";
+}
+
+function fn_service(){
+q="";q+='<table style="width:100%">';m2=""; 
+for (let i=0;i<10;i++){m2+="<tr>";
+for (let j=0;j<3;j++){let ii=i+1;m2+="";
+if (j==0) {	m2+='<th> <input id="reg'+ii+'" type="text" value="reg' +ii+ '">  </th>';}
+if (j==1) {	m2+='<th> <input id="bin'+ii+'" type="text" value="bin' +ii+ '">  </th>';}
+if (j==2) {	m2+='<th>   ';
+let mx=11;
+for (let k=0;k<mx;k++)
+	{
+ 	dd=((i)*mx)-k+mx ;
+	if (i< mx)m2+='<button id="led'+(dd)+'" class = "button1" > '+(dd)+'</button >';
+	}
+m2+=' </th>';}}m2+="</tr>";}q+=m2;q+="</table>";
+document.getElementById("demo").innerHTML =q;
+document.getElementById("reg9").value ="uno run time";
+document.getElementById("reg10").value ="Node run time";
+}
+
+function led(){
+q=leds;for (let i = 1; i < 49; i++) turn(q[i],i);
+}
+ 
+function fn1(){setInterval(onMessage, 1000);}
+ 
+</script>
+</body>
+</html>
